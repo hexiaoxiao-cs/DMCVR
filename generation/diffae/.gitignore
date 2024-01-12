@@ -1,0 +1,17 @@
+temp
+__pycache__
+generated
+latent_infer
+datasets/bedroom256.lmdb
+datasets/horse256.lmdb
+datasets/celebahq
+datasets/celebahq256.lmdb
+datasets/ffhq
+datasets/ffhq256.lmdb
+datasets/celeba.lmdb
+datasets/celeba
+checkpoints
+datasets
+lin_slerp_slerp
+
+.ipynb_checkpoints/

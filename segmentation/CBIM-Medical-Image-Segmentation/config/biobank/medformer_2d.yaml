@@ -1,0 +1,60 @@
+#DATA
+data_root: /filer/tmp1/xh172/ukbb/train_extracted
+classes: 4
+modality: mri
+
+
+#MODEL
+arch: utnetv2
+in_chan: 1
+base_chan: 32
+conv_block: 'BasicBlock'
+conv_num: [2,0,0,0,  0,0,2,2]
+trans_num: [0,2,2,2,  2,2,0,0]
+num_heads: [1,4,8,16, 8,4,1,1] 
+map_size: 3
+expansion: 2
+fusion_depth: 2
+fusion_dim: 512
+fusion_heads: 16
+proj_type: 'depthwise'
+attn_drop: 0.
+proj_drop: 0.
+
+
+
+#TRAIN
+epochs: 200
+training_size: [256, 256]    # training crop size
+start_epoch: 0
+aux_loss: True
+aux_weight: [0.5, 0.5]
+
+seed: 0
+k_fold: 5
+
+optimizer: adamw
+base_lr: 0.001  
+betas: [0.9, 0.999]
+weight_decay: 0.05  # weight decay of SGD optimizer
+weight: [0.5, 1, 1, 1]  # weitght of each class in the loss function
+rlt: 1 # relation between CE and Dice loss
+
+scale: 0.3  # scale for data augmentation
+rotate: 180 # rotation angle for data augmentation
+translate: 0
+gaussian_noise_std: 0.02
+additive_brightness_std: 0.7
+gamma_range: [0.5, 1.6]
+
+
+#VALIDATION
+ema: True
+ema_alpha: 0.99
+val_frequency: 1  
+
+#INFERENCE
+sliding_window: False
+
+#no idea
+print_freq: 1
